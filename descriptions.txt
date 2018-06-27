@@ -1,0 +1,13 @@
+php practitioner=================
+part3: in order to see the code on browser we can define a server like 
+this:   php -S localhost:8888
+-----------------------
+part4: PHP and Html: 
+query builder:  when we pass ?key=value  in url ==> we need to define that variable in php document with a SUPERGLOBAL variable like this:
+url: localhost:8080?name=moji
+in php file: $name = $_GET['name']
+===> another syntax for <?php echo    -----> <?=
+htmlspecialchars($_GET['name'])  --> is a function that sanitizes the code viewers may add to url to manipulate our code. this function will convert that to a string and it wont be executed.   
+------------------------
+part5: separate php logic from the html view. 
+require:  is a function that pulls everything from the view to php file and links the view and php together. (separation of concerns)
