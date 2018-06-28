@@ -86,3 +86,46 @@ new Task('come back home')
 ]
 - the values inside the class which are protected are not accessible outside the class. one way is to change the protected to public. the other way is;
 make a public function with the same name and inside it return $this-><property> and then use the function outside the class.
+
+## part 13:
+ to interact with the database we need to use PDO class. (Php Data Object)
+$pdo = new PDO('mysql:host=127.0.0.1;dbname=mytodo', 'root', '');
+better to wrap it in try/catch and catch() can have general catch(Exception) or catch(PDOException $e)
+- in order to add sql query : 
+$pdo->prepare('select * from todos');
+$statement->execute();
+var_dump($statement->fetchAll());
+if we want to see only the objects not array index numbers:       fetchAll(PDO::FETCH_OBJ)
+
+$tasks = $statement->fetchAll(PDO::FETCH_OBJ);   --> with this $tasks we can already use $task collection inside the view.
+we can also fetch the data from database into Task class. like this: $tasks = $statement->fetchAll(PDO::FETCH_CLASS,'Task'); 
+- then we need to make a Task class inside the same php file or outside of it and reference it here. and just define the variables. 
+- also any function or logic or behavior inside Task class can be called inside the main php file. like:  $tasks[0]->function_name()  it has to be 
+calling an instance of $tasks not $tasks array.
+
+
+## part 14;
+now we are going to add different pieces of the logic in different classes.
+when a class is static:  we use this syntax for it:   <function_name>::<method_name> 
+for example:  class Connection {
+    public function make() {
+    }
+}
+this is a public function. we should instantiate the object ==> $connection = new Connection();   and then   $connection->make();
+but:
+ class Connection {
+    public static function make() {
+    }
+}
+
+for this we can say: Connection::make();
+we can move the database connection to a dedicated Connection class and reference it in our code.
+IMPORTANT:  public function __construct(PDO $pdo)     the first PDO means I want it to be an instance of PDO class not an integer or string, or anything else.
+$statement = $this->pdo->prepare("select * from {$table}");   I used ' instead of " and it didnt work.
+BOOTSTRAP: means a small piece of program that helps run a bigger program or the main program. 
+Array_map() function goes through all array items and does something for each entry. 
+
+
+
+
+
