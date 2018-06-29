@@ -126,6 +126,12 @@ BOOTSTRAP: means a small piece of program that helps run a bigger program or the
 Array_map() function goes through all array items and does something for each entry. 
 
 
+## part 15,16:
+in order to secure passwords and private files we can make a new file called config.php and then define database properties there as an array of arrays. 
+then we can reference $config to make() method in connection class of connection.php
+- we need to require it in our bootstrap file as requrire 'config.php' and we call it $config. 
+and then we pass $config['database'] to 'make' fuction in querbuilder.
+
 
 
 
